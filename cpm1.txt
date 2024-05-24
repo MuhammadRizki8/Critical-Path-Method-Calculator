@@ -1,0 +1,21 @@
+1, Membuat Project Charter, 2, 
+2, Membuat manajemen perencanaan proyek, 3, 1
+3, Identifikasi risiko proyek, 3, 2
+4, Membuat mananajemen perubahan, 4, 2
+5, membuat manajemen stakeholder, 2, 2
+6, Identifikasi kebutuhan sistem, 7, 3;4;5
+7, test master plan, 5, 6
+8, membuat perancangan sistem, 7, 7
+9, Membuat rencana konversi (pengalihan), 3, 8
+10, Membuat rencana implementasi, 3, 8
+11, perencanaan operasi sistem administrasi dan maintenance, 7, 8
+12, Membuat rencana pelatihan, 3, 10
+13, Perancangan user manual, 4, 11
+14, Pengembangan software, 35, 9;12;13
+15, Integrasi sistem, 20, 14
+16, Analisis laporan pengujian, 7, 14
+17, Membuat versi dekrip, 10, 14
+18, penentuan pengujian persetujuan analisis, 3, 15;16;17
+19, laporan permasalan pengujian, 2, 18
+20, pengujian penerimaan user, 7, 18
+21, perencanaan disposisi, 3, 19;20
