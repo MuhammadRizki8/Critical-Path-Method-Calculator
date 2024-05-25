@@ -12,9 +12,10 @@ def calculate_cpm(file_path):
             task_id = singleElement[0]
             tasks['task' + task_id] = {
                 'id': singleElement[0],
-                'name': singleElement[1],
-                'duration': int(singleElement[2]),
-                'dependencies': singleElement[3].strip().split(';') if singleElement[3] else ['none'],
+                'activity': singleElement[1],
+                'name': singleElement[2],
+                'duration': int(singleElement[3]),
+                'dependencies': singleElement[4].strip().split(';') if singleElement[4] else ['none'],
                 'ES': 0,
                 'EF': 0,
                 'LS': 0,
@@ -54,27 +55,38 @@ def calculate_cpm(file_path):
 
     return tasks
 
-# Function to visualize the critical path as a graph
 def visualize_critical_path_graph(tasks):
-    G = nx.Graph()
+    G = nx.DiGraph()  # Use DiGraph for directed edges
+
+    # Add start node
+    G.add_node('start', label='Start', duration=0, critical=False)
 
     for task in tasks.values():
-        G.add_node(task['id'], label=task['id'], duration=task['duration'], critical=task['isCritical'])
+        G.add_node(task['id'], label=task['activity'], duration=task['duration'], critical=task['isCritical'])
 
     for task in tasks.values():
-        for dep_id in task['dependencies']:
-            if dep_id != 'none':
-                G.add_edge(dep_id, task['id'])
+        if 'none' in task['dependencies']:
+            G.add_edge('start', task['id'])
+        else:
+            for dep_id in task['dependencies']:
+                if dep_id != 'none':
+                    G.add_edge(dep_id, task['id'])
 
     pos = nx.spring_layout(G)
 
     plt.figure(figsize=(12, 8))
 
-    critical_edges = [(u, v) for u, v in G.edges if tasks['task' + u]['isCritical'] and tasks['task' + v]['isCritical']]
-    non_critical_edges = [(u, v) for u, v in G.edges if not (tasks['task' + u]['isCritical'] and tasks['task' + v]['isCritical'])]
+    critical_edges = [(u, v) for u, v in G.edges if tasks.get('task' + u, {}).get('isCritical') and tasks.get('task' + v, {}).get('isCritical')]
+    non_critical_edges = [(u, v) for u, v in G.edges if not (tasks.get('task' + u, {}).get('isCritical') and tasks.get('task' + v, {}).get('isCritical'))]
 
     # Draw nodes
-    node_colors = ['red' if task['isCritical'] else 'lightblue' for task in tasks.values()]
+    node_colors = []
+    for node in G.nodes:
+        if node == 'start':
+            node_colors.append('green')
+        else:
+            node_colors.append('red' if tasks.get('task' + node, {}).get('isCritical') else 'lightblue')
+
     nx.draw_networkx_nodes(G, pos, node_color=node_colors, node_size=500)
 
     # Draw edges
@@ -83,7 +95,7 @@ def visualize_critical_path_graph(tasks):
 
     # Draw labels
     nx.draw_networkx_labels(G, pos, labels=nx.get_node_attributes(G, 'label'), font_size=8)
-    edge_labels = {(u, v): f'{tasks["task" + v]["duration"]}' for u, v in G.edges}
+    edge_labels = {(u, v): f'{tasks.get("task" + v, {}).get("duration", "")}' for u, v in G.edges}
     nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=8)
 
     plt.title('Critical Path Method (CPM)')
@@ -121,7 +133,7 @@ class CPMApp(tk.Tk):
         for i in self.tree.get_children():
             self.tree.delete(i)
         for task in self.tasks.values():
-            self.tree.insert("", "end", values=(task['id'], task['name'], task['duration'], task['dependencies'], task['ES'], task['EF'], task['LS'], task['LF'], task['float'], task['isCritical']))
+            self.tree.insert("", "end", values=(task['activity'], task['name'], task['duration'], task['dependencies'], task['ES'], task['EF'], task['LS'], task['LF'], task['float'], task['isCritical']))
             
     def visualize(self):
         if self.tasks:
