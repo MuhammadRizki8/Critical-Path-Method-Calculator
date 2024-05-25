@@ -69,16 +69,21 @@ def visualize_critical_path_graph(tasks):
 
     plt.figure(figsize=(12, 8))
 
+    critical_edges = [(u, v) for u, v in G.edges if tasks['task' + u]['isCritical'] and tasks['task' + v]['isCritical']]
+    non_critical_edges = [(u, v) for u, v in G.edges if not (tasks['task' + u]['isCritical'] and tasks['task' + v]['isCritical'])]
+
     # Draw nodes
-    nx.draw_networkx_nodes(G, pos, node_color='lightblue', node_size=400)
-    
+    node_colors = ['red' if task['isCritical'] else 'lightblue' for task in tasks.values()]
+    nx.draw_networkx_nodes(G, pos, node_color=node_colors, node_size=500)
+
     # Draw edges
-    nx.draw_networkx_edges(G, pos, edgelist=G.edges, arrowstyle='-|>', arrowsize=10)
+    nx.draw_networkx_edges(G, pos, edgelist=non_critical_edges, arrowstyle='-|>', arrowsize=10, edge_color='black')
+    nx.draw_networkx_edges(G, pos, edgelist=critical_edges, arrowstyle='-|>', arrowsize=10, edge_color='red')
 
     # Draw labels
     nx.draw_networkx_labels(G, pos, labels=nx.get_node_attributes(G, 'label'), font_size=8)
     edge_labels = {(u, v): f'{tasks["task" + v]["duration"]}' for u, v in G.edges}
-    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=5)
+    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=8)
 
     plt.title('Critical Path Method (CPM)')
     plt.show()
