@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import ttk, filedialog
 from calculate_cpm import calculate_cpm
 from visualize import visualize_critical_path_graph
-
 # GUI setup
 class CPMApp(tk.Tk):
     def __init__(self):
@@ -35,7 +34,7 @@ class CPMApp(tk.Tk):
         for i in self.tree.get_children():
             self.tree.delete(i)
         for task in self.tasks.values():
-            self.tree.insert("", "end", values=(task['id'], task['name'], task['duration'], task['dependencies'], task['ES'], task['EF'], task['LS'], task['LF'], task['float'], task['isCritical']))
+            self.tree.insert("", "end", values=(task['activity'], task['name'], task['duration'], task['dependencies'], task['ES'], task['EF'], task['LS'], task['LF'], task['float'], task['isCritical']))
             
     def visualize(self):
         if self.tasks:
