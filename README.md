@@ -8,26 +8,28 @@ Refensi & Sumber Data
 
 Kegunaan
 ----------------------
-- Aktivitas apa pun di jalur kritis, jika tertunda, dapat menunda proyek;
-- Jalur kritis juga memberikan waktu sesingkat mungkin untuk menyelesaikan proyek;
-- "Jalur kritis" adalah jalur terpanjang dalam jaringan dengan hanya nol aktivitas mengambang;
+- Aktivitas apa pun di jalur kritis, jika tertunda, dapat menunda proyek
+- Jalur kritis juga memberikan waktu sesingkat mungkin untuk menyelesaikan proyek
+- "Jalur kritis" adalah jalur terpanjang dalam jaringan dengan hanya nol aktivitas mengambang
 
 Fitur
 ------------------------------
 Menerapkan program Python untuk:
-- membaca file dengan tabel yang berisi tugas, durasi, dan ketergantungan;
-- membangun Activity-on-Node (AON) dengan ES, EF, LS dan LF untuk setiap tugas;
-- menentukan untuk setiap tugas, apakah tugas tersebut berada di jalur kritis;
-- menampilkan hasil dalam bentuk tabel;
+- membaca file dengan tabel yang berisi tugas, durasi, dan ketergantungan
+- membangun Activity-on-Node (AON) dengan ES, EF, LS dan LF untuk setiap tugas
+- menentukan untuk setiap tugas, apakah tugas tersebut berada di jalur kritis
+- menampilkan hasil dalam bentuk tabel
 - menampilkan hasil dalam bentuk visualisasi.
 
 Cara Penggunaan
 ------------------------------
 - Clone kode github
   > git clone https://github.com/MuhammadRizki8/Critical-Path-Method-Calculator.git
+  
   > cd Critical-Path-Method-Calculator
 - Setup virtual  env
   > python -m venv venv
+  
   > ven\Scripts\activate
 - Install library
   > pip install -r requirements.txt
