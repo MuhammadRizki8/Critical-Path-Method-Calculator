@@ -30,7 +30,7 @@ Cara Penggunaan
 - Setup virtual  env
   > python -m venv venv
   
-  > ven\Scripts\activate
+  > venv\Scripts\activate
 - Install library
   > pip install -r requirements.txt
 - Jalankan program
