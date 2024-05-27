@@ -35,7 +35,7 @@ def visualize_critical_path_graph(tasks):
         else:
             node_colors.append('red' if tasks.get('task' + node, {}).get('isCritical') else 'lightblue')
 
-    nx.draw_networkx_nodes(G, pos, node_color=node_colors, node_size=500)
+    nx.draw_networkx_nodes(G, pos, node_color=node_colors, node_size=300)
 
     # Draw edges
     nx.draw_networkx_edges(G, pos, edgelist=non_critical_edges, arrowstyle='-|>', arrowsize=10, edge_color='black')
