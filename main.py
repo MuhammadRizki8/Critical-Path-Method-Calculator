@@ -33,8 +33,15 @@ class CPMApp(tk.Tk):
         self.tasks = calculate_cpm(file_path)
         for i in self.tree.get_children():
             self.tree.delete(i)
+        id_to_activity = {task['id']: task['activity'] for task in self.tasks.values()}
         for task in self.tasks.values():
-            self.tree.insert("", "end", values=(task['activity'], task['name'], task['duration'], task['dependencies'], task['ES'], task['EF'], task['LS'], task['LF'], task['float'], task['isCritical']))
+            dependencies_as_activities = [id_to_activity[dep_id] for dep_id in task['dependencies'] if dep_id in id_to_activity]
+            if not dependencies_as_activities:
+                dependencies_as_activities = ['none']
+            else:
+                dependencies_as_activities = ' & '.join(dependencies_as_activities)
+
+            self.tree.insert("", "end", values=(task['activity'], task['name'], task['duration'], dependencies_as_activities, task['ES'], task['EF'], task['LS'], task['LF'], task['float'], task['isCritical']))
             
     def visualize(self):
         if self.tasks:

@@ -27,8 +27,7 @@ def calculate_cpm(file_path):
         else:
             for dep_id in task['dependencies']:
                 dep_task = tasks['task' + dep_id]
-                task['ES'] = max(task['ES'], dep_task['EF'] + 1)
-            task['ES'] -= 1
+                task['ES'] = max(task['ES'], dep_task['EF'])
             task['EF'] = task['ES'] + task['duration']
 
     # Backward Pass
