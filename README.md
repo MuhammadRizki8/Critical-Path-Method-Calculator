@@ -2,6 +2,11 @@ Critical Path Method Calculator
 ---------------------------------
 Critical Path Method (CPM) adalah sebuah algoritma untuk menjadwalkan serangkaian aktivitas dalam proyek. Jalur kritis ditentukan dengan mengidentifikasi rangkaian terpanjang dari aktivitas-aktivitas yang saling bergantung dan mengukur waktu yang dibutuhkan untuk menyelesaikannya dari awal hingga akhir. Sistem dibangun dengan data proyek implementasi ERP pada PT Perkebunan Nusantara tahun 2016.
 
+Preview
+--------------------------------
+![image](https://github.com/MuhammadRizki8/Critical-Path-Method-Calculator/assets/100481579/4d3d2764-a125-4a25-9db9-ef7457463606)
+![image](https://github.com/MuhammadRizki8/Critical-Path-Method-Calculator/assets/100481579/859dbbed-7eed-4f7d-9356-96c30b6bdafd)
+
 Refensi & Sumber Data
 --------------------
 > Purwadi, A. T. (2016). Pembuatan Work Breakdown Structure Dictionary Untuk Program Implementasi ERP SAP DI PT Perkebunan Nusantara XI. Institut Teknologi Sepuluh Nopember.
@@ -36,6 +41,6 @@ Cara Penggunaan
 - Jalankan program
   > python main.py
 
-![WhatsApp Image 2024-05-25 at 11 10 08](https://github.com/MuhammadRizki8/Critical-Path-Method-Calculator/assets/100481579/f023adf9-96ff-47d9-9b72-3045989c4d7f)
-![WhatsApp Image 2024-05-25 at 11 01 26](https://github.com/MuhammadRizki8/Critical-Path-Method-Calculator/assets/100481579/e1619b13-bbd9-4ea8-a2d6-0bcc09bb6374)
+
+
 
