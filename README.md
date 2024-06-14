@@ -41,6 +41,8 @@ Cara Penggunaan
 - Jalankan program
   > python main.py
 
+Semoga membantu...
+
 
 
 
